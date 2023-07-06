@@ -1,0 +1,64 @@
+<%- include('partials/header') -%>
+
+    <form action="/quiz" method="post">
+        <% quiz.map((x,y)=> { %>
+
+
+            <div class="container mt-5">
+                <div class="d-flex justify-content-center row">
+                    <div class="col-md-10 col-lg-10">
+                        <div class="border">
+                            <div class="question bg-white p-3 border-bottom">
+                                <div class="d-flex flex-row align-items-center question-title">
+                                    <h3 class="text-danger">Q <%= y+1 %> </h3>
+                                    <h5 class="mt-1 ml-2">
+                                        . <%= x.question %>
+                                    </h5>
+                                </div>
+                                <div class="ans ml-2">
+                                    <label class="radio"> <input type="radio" name=<%=y+1 %> value='A'>
+                                        <span>
+                                            <%= x.incorrect_answers[0] %>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ans ml-2">
+                                    <label class="radio"> <input type="radio" name=<%=y+1 %> value='B'>
+                                        <span>
+                                            <%= x.incorrect_answers[1] %>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ans ml-2">
+                                    <label class="radio"> <input type="radio" name=<%=y+1 %> value='C'>
+                                        <span>
+                                            <%= x.incorrect_answers[2] %>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ans ml-2">
+                                    <label class="radio"> <input type="radio" name=<%=y+1 %> value='D'>
+                                        <span>
+                                            <%= x.correct_answer %>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%})%>
+
+
+
+                <div class="d-flex gap-2 justify-content-center py-5">
+                    <button class="btn btn-primary rounded-pill px-3" type="submit">Submit</button>
+                </div>
+
+    </form>
+
+
+    <%- include('partials/footer') -%>
