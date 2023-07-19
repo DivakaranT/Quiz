@@ -111,6 +111,15 @@ app.post("/result", function (req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, function () {
-  console.log("Server started");
-});
+// app.listen(3000, function () {
+//   console.log("Server started");
+// });
+
+const PORT = 4000
+
+app.listen(PORT, () => {
+  console.log(`API listening on PORT ${PORT} `)
+})
+
+// Export the Express API
+module.exports = app
