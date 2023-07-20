@@ -9,9 +9,21 @@
             <div class="p-5 text-center bg-body-tertiary rounded-3">
               <svg class="bi mt-4 mb-3" style="color: var(--bs-indigo);" width="100" height="100"><use xlink:href="#bootstrap"/></svg>
               <h1 class="text-body-emphasis">Quiz Results</h1>
-              <p class="col-lg-8 mx-auto <fs-5 text-muted">
+              <p class="col-lg-8 mx-auto fs-5 text-muted">
                 You scored <%= mark %> / <%= amount %>.
+                <br>
+                <br>
               </p>
+              <h3 class="text-body-emphasis">Answers</h3>
+              <ol class="list-group list-group-numbered">
+                <% answers.map((x) => { %>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                  <%= decodeURIComponent(x) %>
+                </div>
+                </li>
+                <% }) %>
+              </ol>
               <div class="d-flex gap-2 justify-content-center py-5">
                 <button class="btn btn-primary rounded-pill px-3" type="submit">Home</button>
             </div>

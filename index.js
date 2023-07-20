@@ -78,16 +78,23 @@ app.post("/", function (req, res) {
   const url =
     "https://opentdb.com/api.php?amount=" + amt + "&category=" + type + "&difficulty=" + diffy + "&type=multiple&encode=url3986";
   https.get(url, function (response) {
-    response.on("data", function (data) {
-      var quizData = JSON.parse(data);
+    let rawData = ''
+    response.on("data", function(data){
+      rawData += data
+    })
+    response.on("end", function () {
+
+      var quizData = JSON.parse(rawData);
+
       // console.log(quizData.results)
       var answers = []
       quizData.results.map(x => {x.incorrect_answers.push(x.correct_answer);
         shuffle(x.incorrect_answers);
         answers = [...answers,x.incorrect_answers]});
         var correct = quizData.results.map(x => x.correct_answer);
-        console.log(correct);
+        //console.log(correct);
       res.render("quiz", { quiz: quizData.results , ans:answers, correct:correct, amt:amt });
+      
     });
   });
 });
@@ -95,7 +102,7 @@ app.post("/", function (req, res) {
 app.post("/quiz", function (req, res) {
   const result = req.body;
   const answers = result.btn.split(',');
-  //console.log(result);
+  console.log(answers);
   let count = 0;
   for (const [key, value] of Object.entries(result)) {
     if (key != 'btn') {
@@ -104,7 +111,7 @@ app.post("/quiz", function (req, res) {
       }
     }
   }
-  res.render("result", { mark: count ,amount:answers.length});
+  res.render("result", { mark: count ,answers:answers, amount:answers.length});
 });
 
 app.post("/result", function (req, res) {
