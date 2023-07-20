@@ -51,3 +51,22 @@
       transform:translateX(25%);
     }
   }
+
+  .header {
+    position: absolute;
+    width: 90%;
+    font-size: 60px;
+    font-weight: 600;
+    color: transparent;
+    background-image: linear-gradient(to right ,#cac30c, #ee4b2b, #00c2cb, #2d39a4, #553c9a);
+    -webkit-background-clip: text;
+    background-clip: text;    
+    background-size: 200%;
+    background-position: -200%;
+    animation: animated-gradient 2s infinite alternate-reverse;      
+  }
+  @keyframes animated-gradient{
+    to{
+      background-position: 200%;
+    }
+  }
